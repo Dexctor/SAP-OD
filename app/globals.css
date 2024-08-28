@@ -19,6 +19,10 @@
 body {
   color: rgb(var(--foreground-rgb));
   background-color: #0e1010 ;
+  max-width: 1280px;
+  margin: auto;
+  padding: 0;
+
 }
 
 @layer utilities {
