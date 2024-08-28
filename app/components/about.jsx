@@ -25,7 +25,7 @@ const About = () => {
           
           <div className="md:w-1/2">
             <p className="text-gray-400 mb-4 text-sm">
-              Bonjour ! Je suis Odile Dewas, consultante freelance spécialisée dans les systèmes SAP et l'optimisation technique.
+              Bonjour ! Je suis Odile Dewas, consultante freelance spécialisée dans les systèmes SAP et l&apos;optimisation technique.
             </p>
             <p className="text-gray-400 mb-4 text-sm">
               Avec plus de 19 ans d&apos;expérience, je me consacre à la gestion avancée des environnements SAP pour offrir des solutions efficaces et sur mesure. Mon expertise couvre la surveillance, la maintenance, la sécurité et la formation des équipes sur les meilleures pratiques SAP.
