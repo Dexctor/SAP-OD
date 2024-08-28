@@ -39,7 +39,7 @@ function Hero() {
             transition={{ duration: 0.2, delay: 0.2 }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-medium leading-tight mb-6">
-              Avec 18 ans d'expérience en tant qu'Architecte SAP Solution Manager et Administratrice SAP BASIS, je suis prête à relever de nouveaux challenges pour optimiser et sécuriser vos systèmes SAP.
+              Avec 18 ans d&apos;expérience en tant qu&apos;Architecte SAP Solution Manager et Administratrice SAP BASIS, je suis prête à relever de nouveaux challenges pour optimiser et sécuriser vos systèmes SAP.
             </h2>
           </motion.div>
           <motion.div

@@ -33,7 +33,7 @@ export default function IdeaProject() {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5, delay: 0.8 }}
         >
-          Vous ayez besoin d'améliorer vos systèmes SAP existants ou de mettre en œuvre de nouvelles solutions ? Je suis là pour vous aider à concrétiser vos projets.
+          Vous ayez besoin d&apos;améliorer vos systèmes SAP existants ou de mettre en œuvre de nouvelles solutions ? Je suis là pour vous aider à concrétiser vos projets.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}

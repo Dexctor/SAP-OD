@@ -20,10 +20,10 @@ const Skills: React.FC = () => {
             Compétences
           </h2>
           <p className="text-gray-400 mb-8">
-            De la gestion des systèmes SAP à l'optimisation des bases de
-            données, chaque compétence contribue à l'ensemble de mon
-            expertise professionnelle. Grâce à des années d'expérience et de
-            formation continue, je suis en mesure d'offrir des solutions
+            De la gestion des systèmes SAP à l&apos;optimisation des bases de
+            données, chaque compétence contribue à l&apos;ensemble de mon
+            expertise professionnelle. Grâce à des années d&apos;expérience et de
+            formation continue, je suis en mesure d&apos;offrir des solutions
             innovantes et efficaces pour répondre aux besoins complexes de
             mes clients.
           </p>

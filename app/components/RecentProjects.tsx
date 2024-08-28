@@ -132,7 +132,7 @@ const RecentProjects: React.FC = () => {
           </div>
 
           <p className="text-[#aeb2ba] text-sm sm:text-base my-6 sm:my-8">
-            En tant qu'Expert Basis en mission chez Décathlon Croix via ma propre entreprise (SASU Odile Dewas), j'offre une expertise technique avancée en gestion des systèmes SAP, notamment pour les modules Basis et Solution Manager. Mes responsabilités incluent :
+            En tant qu&apos;Expert Basis en mission chez Décathlon Croix via ma propre entreprise (SASU Odile Dewas), j&apos;offre une expertise technique avancée en gestion des systèmes SAP, notamment pour les modules Basis et Solution Manager. Mes responsabilités incluent :
           </p>
 
           <div className=''>
