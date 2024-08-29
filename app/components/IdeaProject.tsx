@@ -1,10 +1,9 @@
 'use client'
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useSpring, useMotionValue, useTransform } from 'framer-motion';
 import Link from 'next/link';
 import { useInView } from 'react-intersection-observer';
 import { FaLightbulb, FaArrowRight } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
-import { MotionValue } from 'framer-motion/dom';
 
 export default function IdeaProject() {
     const [ref, isInView] = useInView({
@@ -12,13 +11,13 @@ export default function IdeaProject() {
       threshold: 0.1,
     });
 
-    const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
     useEffect(() => {
       const handleMouseMove = (e: MouseEvent) => {
-        setMousePosition({ x: e.clientX, y: e.clientY });
+        mouseX.set(e.clientX);
+        mouseY.set(e.clientY);
       };
 
       window.addEventListener('mousemove', handleMouseMove);
@@ -27,31 +26,21 @@ export default function IdeaProject() {
       };
     }, []);
 
-    useEffect(() => {
-      mouseX.set(mousePosition.x);
-      mouseY.set(mousePosition.y);
-    }, [mousePosition, mouseX, mouseY]);
-
     const Circle = ({ x, y, size, color }: { x: number, y: number, size: number, color: string }) => {
-      const distance = useTransform<number[], number>(
-        [mouseX, mouseY],
-        ([latestX, latestY]) => Math.hypot(latestX - x, latestY - y)
-      );
-      const scale = useTransform(distance, [0, 300], [1.5, 1]);
+      const springConfig = { stiffness: 100, damping: 30 }; // Configuration plus douce
+      const offsetX = useSpring(useTransform(mouseX, (value) => (value - window.innerWidth / 2) * 0.02), springConfig);
+      const offsetY = useSpring(useTransform(mouseY, (value) => (value - window.innerHeight / 2) * 0.02), springConfig);
 
       return (
         <motion.div
-          className="absolute rounded-full cursor-pointer"
+          className="absolute rounded-full"
           style={{
-            x,
-            y,
+            x: useTransform(offsetX, (value) => x + value),
+            y: useTransform(offsetY, (value) => y + value),
             width: size,
             height: size,
             backgroundColor: color,
-            scale,
           }}
-          whileHover={{ scale: 1.2, backgroundColor: "rgba(255, 255, 255, 0.3)" }}
-          transition={{ duration: 0.3 }}
         />
       );
     };
@@ -59,16 +48,16 @@ export default function IdeaProject() {
     return (
       <motion.div 
         ref={ref}
-        className="mb-16 relative overflow-hidden p-4 sm:p-6 md:p-8 rounded-lg bg-gradient-to-br from-black to-[#11111111]"
+        className="my-16 relative overflow-hidden p-4 sm:p-6 md:p-8 rounded-xl bg-gradient-radial from-[#1d1d1d1d] to-[#11111111]"
         initial={{ opacity: 0, y: 50 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.5 }}
       >
         {/* Éléments décoratifs interactifs */}
-        <Circle x={50} y={50} size={40} color="rgba(255, 255, 255, 0.2)" />
-        <Circle x={150} y={100} size={60} color="rgba(255, 255, 255, 0.15)" />
-        <Circle x={250} y={80} size={30} color="rgba(255, 255, 255, 0.1)" />
-        <Circle x={80} y={200} size={50} color="rgba(255, 255, 255, 0.12)" />
+        <Circle x={900} y={120} size={40} color="rgba(15, 15, 15, 0.8)" />
+        <Circle x={750} y={10} size={60} color="rgba(55, 9, 93, 0.8)" />
+        <Circle x={650} y={180} size={30} color="rgba(112, 44, 139, 0.8)" />
+        <Circle x={480} y={200} size={50} color="rgba(48, 5, 77, 0.92)" />
 
         {/* Contenu CTA */}
         <div className="relative z-10 p-6">
@@ -84,7 +73,7 @@ export default function IdeaProject() {
             </h2>
           </motion.div>
           <motion.p 
-            className="text-white text-sm sm:text-base mb-6"
+            className="text-white w-full md:w-2/3 text-sm sm:text-base mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.6 }}
@@ -96,7 +85,7 @@ export default function IdeaProject() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.8 }}
           >
-            <Link href="/Contact" className="inline-flex items-center bg-white text-black px-6 py-3 text-base font-medium rounded-full hover:bg-gray-100 transition-colors">
+            <Link href="/Contact" className="inline-flex mt-5 items-center rounded-lg text-white px-6 py-3 text-base font-medium rounded-fullbg-[#242424] border border-[#393939] hover:bg-purple-700 hover:text-white transition-colors">
               <span className="mr-2">Contactez-moi</span>
               <FaArrowRight />
             </Link>

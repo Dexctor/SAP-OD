@@ -2,11 +2,11 @@ import React from 'react'
 import Image from 'next/image'
 
 const logos = [
-  { src: '/images/logos/arcelormittal.png', alt: 'ArcelorMittal' },
-  { src: '/images/logos/sopra.png', alt: 'Sopra' },
-  { src: '/images/logos/oxya.png', alt: 'Oxya' },
-  { src: '/images/logos/lashuttle.png', alt: 'La Shuttle' },
-  { src: '/images/logos/decathlon.png', alt: 'Decathlon' },
+  { src: '/images/logos/arcelormittal.png', alt: 'ArcelorMittal', priority: true },
+  { src: '/images/logos/sopra.png', alt: 'Sopra', priority: true },
+  { src: '/images/logos/oxya.png', alt: 'Oxya' ,priority: true },
+  { src: '/images/logos/lashuttle.png', alt: 'La Shuttle' ,priority: true},
+  { src: '/images/logos/decathlon.png', alt: 'Decathlon' , priority: true },
 ]
 
 export default function LogoSection() {
@@ -20,9 +20,9 @@ export default function LogoSection() {
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  layout="fill"
-                  objectFit="contain"
-                  className=" transition-all duration-300"
+                  fill
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 20vw"
+                  className="object-contain transition-all duration-300"
                 />
               </div>
             </div>

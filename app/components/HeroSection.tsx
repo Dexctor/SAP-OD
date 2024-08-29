@@ -57,7 +57,7 @@ function Hero() {
             </p>
             <a
               href="./get-started"
-              className="inline-block px-6 py-3 text-sm sm:text-base font-medium rounded-full shadow-sm text-white bg-[#3a7dc0] hover:bg-purple-700 transition-colors"
+              className="inline-block px-6 py-3 text-sm sm:text-base font-medium rounded-lg shadow-sm text-white bg-[#242424] border border-[#393939] hover:bg-purple-700 hover:border-[#cc24ff] transition-colors"
             >
              CONTACTEZ-MOI
             </a>

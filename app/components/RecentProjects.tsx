@@ -38,8 +38,7 @@ const ProjectInfo: React.FC<ProjectInfoProps> = ({ label, value, isLink = false 
         className="text-blue-500 px-3 py-1 rounded-full"
         whileHover={{ 
           backgroundColor: "#2b2d2d", 
-          color: "#ffffff",
-          scale: 1.05
+          color: "#ffffff"
         }}
         transition={{ 
           type: "spring", 
@@ -126,7 +125,6 @@ const RecentProjects: React.FC = () => {
               alt="Project Image"
               width={700}
               height={80}
-              objectFit="cover"
               className="rounded"
             />
           </div>

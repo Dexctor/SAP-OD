@@ -1,8 +1,26 @@
 'use client'
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useRouter, usePathname } from 'next/navigation';
+
+const buttonVariants = {
+  initial: { backgroundColor: "#1d1d1d", paddingRight: "16px" },
+  hover: { 
+    backgroundColor: "#7D3C98", 
+    paddingRight: "40px",
+    transition: { duration: 0.3 }
+  }
+};
+
+const arrowVariants = {
+  initial: { opacity: 0, x: -10 },
+  hover: { 
+    opacity: 1, 
+    x: 0,
+    transition: { duration: 0.3 }
+  }
+};
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,10 +29,8 @@ export default function Navbar() {
 
     const handleNavigation = (sectionId: string) => {
         if (pathname === '/links') {
-            // Si on est sur la page links, on navigue vers la page d'accueil avec un hash
             router.push(`/#${sectionId}`);
         } else {
-            // Sinon, on fait défiler jusqu'à la section
             const section = document.getElementById(sectionId);
             if (section) {
                 section.scrollIntoView({ behavior: 'smooth' });
@@ -24,7 +40,7 @@ export default function Navbar() {
     };
 
     return (
-        <nav className="text-white">
+        <nav className="text-white ">
             <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <motion.div 
@@ -32,30 +48,26 @@ export default function Navbar() {
                         animate={{ opacity: 1 }}
                         transition={{ duration: 0.3 }}
                     >
-                        <Link href='./'>
-                            <h3 className="text-xl font-semibold">ODILE DEWAS - CONSULTING</h3>
+                        <Link href='./' className="text-xl font-semibold hover:text-[#e9e9e9] transition-colors">
+                            ODILE DEWAS - CONSULTING
                         </Link>
                     </motion.div>
 
                     {/* Menu pour desktop */}
-                    <div className="hidden md:flex items-center space-x-4">
+                    <div className="hidden md:flex items-center space-x-6">
                         <button onClick={() => handleNavigation('travaux')} className="text-gray-300 hover:text-white transition-colors">Travaux</button>
                         <Link href='./links' className="text-gray-300 hover:text-white transition-colors">Liens</Link>
                         <motion.div
-                            whileHover={{
-                                backgroundColor: "#7D3C98",
-                                transition: { duration: 0.3 }
-                            }}
+                            variants={buttonVariants}
+                            initial="initial"
+                            whileHover="hover"
                             className="relative rounded-full overflow-hidden"
                         >
-                            <Link href='/Contact' className="px-4 py-2 flex items-center justify-between bg-[#1d1d1d] text-white">
-                                <span className="mr-2">CONTACTEZ-MOI</span>
+                            <Link href='/Contact' className="px-4 py-2 flex items-center justify-between text-white">
+                                <span>CONTACTEZ-MOI</span>
                                 <motion.div
-                                    className="bg-[#9333ea] rounded-full p-1"
-                                    whileHover={{
-                                        rotate: -45,
-                                        transition: { duration: 0.3 }
-                                    }}
+                                    variants={arrowVariants}
+                                    className="absolute right-4"
                                 >
                                     <svg
                                         xmlns="http://www.w3.org/2000/svg"
@@ -72,39 +84,51 @@ export default function Navbar() {
                     </div>
 
                     {/* Bouton hamburger pour mobile */}
-                    <div className="md:hidden">
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="text-white focus:outline-none"
-                        >
-                            <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                {isMenuOpen ? (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                ) : (
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                                )}
-                            </svg>
-                        </button>
-                    </div>
+                    <motion.button
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        className="md:hidden text-white focus:outline-none"
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isMenuOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                        </svg>
+                    </motion.button>
                 </div>
 
                 {/* Menu pour mobile */}
-                {isMenuOpen && (
-                    <div className="md:hidden">
-                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            <button onClick={() => handleNavigation('travaux')} className="block text-gray-300 hover:text-white transition-colors py-2 w-full text-left">Travaux</button>
-                            <Link href='./links' className="block text-gray-300 hover:text-white transition-colors py-2">Liens</Link>
-                            <motion.div
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
+                <AnimatePresence>
+                    {isMenuOpen && (
+                        <motion.div 
+                            className="md:hidden fixed inset-0  bg-opacity-50 z-50"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            <motion.div 
+                                className="bg-[#1d1d1d] h-full w-2/3 max-w-xs"
+                                initial={{ x: "-100%" }}
+                                animate={{ x: 0 }}
+                                exit={{ x: "-100%" }}
+                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                onClick={(e) => e.stopPropagation()}
                             >
-                                <Link href='/Contact' className="block text-center px-4 py-2 rounded-full  mt-4">
-                                    CONTACTEZ-MOI
-                                </Link>
+                                <div className="px-4 py-6 space-y-4">
+                                    <button onClick={() => handleNavigation('travaux')} className="block text-gray-300 hover:text-white transition-colors py-2 w-full text-left">Travaux</button>
+                                    <Link href='./links' className="block text-gray-300 hover:text-white transition-colors py-2">Liens</Link>
+                                    <motion.div
+                                        whileHover={{ scale: 1.05 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <Link href='/Contact' className="block text-center px-4 py-2 rounded-full bg-[#9333ea] mt-4 hover:bg-[#7D3C98] transition-colors">
+                                            CONTACTEZ-MOI
+                                        </Link>
+                                    </motion.div>
+                                </div>
                             </motion.div>
-                        </div>
-                    </div>
-                )}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
             </div>
         </nav>
     )
