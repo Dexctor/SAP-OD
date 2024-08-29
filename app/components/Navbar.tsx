@@ -61,7 +61,7 @@ export default function Navbar() {
                             variants={buttonVariants}
                             initial="initial"
                             whileHover="hover"
-                            className="relative rounded-full overflow-hidden"
+                            className="relative rounded-lg overflow-hidden"
                         >
                             <Link href='/Contact' className="px-4 py-2 flex items-center justify-between text-white">
                                 <span>CONTACTEZ-MOI</span>
