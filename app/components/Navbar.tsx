@@ -28,7 +28,7 @@ export default function Navbar() {
     const pathname = usePathname();
 
     const handleNavigation = (sectionId: string) => {
-        if (pathname === '/links') {
+        if (pathname !== '/') {
             router.push(`/#${sectionId}`);
         } else {
             const section = document.getElementById(sectionId);
