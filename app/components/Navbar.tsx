@@ -2,14 +2,23 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion';
+import { useRouter, usePathname } from 'next/navigation';
 
 export default function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const router = useRouter();
+    const pathname = usePathname();
 
-    const scrollToSection = (sectionId: string) => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
+    const handleNavigation = (sectionId: string) => {
+        if (pathname === '/links') {
+            // Si on est sur la page links, on navigue vers la page d'accueil avec un hash
+            router.push(`/#${sectionId}`);
+        } else {
+            // Sinon, on fait défiler jusqu'à la section
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
         }
         setIsMenuOpen(false);
     };
@@ -30,7 +39,7 @@ export default function Navbar() {
 
                     {/* Menu pour desktop */}
                     <div className="hidden md:flex items-center space-x-4">
-                        <button onClick={() => scrollToSection('travaux')} className="text-gray-300 hover:text-white transition-colors">Travaux</button>
+                        <button onClick={() => handleNavigation('travaux')} className="text-gray-300 hover:text-white transition-colors">Travaux</button>
                         <Link href='./links' className="text-gray-300 hover:text-white transition-colors">Liens</Link>
                         <motion.div
                             whileHover={{
@@ -83,7 +92,7 @@ export default function Navbar() {
                 {isMenuOpen && (
                     <div className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            <button onClick={() => scrollToSection('travaux')} className="block text-gray-300 hover:text-white transition-colors py-2 w-full text-left">Travaux</button>
+                            <button onClick={() => handleNavigation('travaux')} className="block text-gray-300 hover:text-white transition-colors py-2 w-full text-left">Travaux</button>
                             <Link href='./links' className="block text-gray-300 hover:text-white transition-colors py-2">Liens</Link>
                             <motion.div
                                 whileHover={{ scale: 1.05 }}

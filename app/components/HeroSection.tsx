@@ -1,6 +1,7 @@
 'use client'
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { PiHandWavingFill } from "react-icons/pi";
 
 function Hero() {
   return (
@@ -24,7 +25,10 @@ function Hero() {
                 />
               </div>
               <div>
+                <div className='flex items-center gap-5'>
                 <h1 className="text-base sm:text-lg font-semibold">ODILE DEWAS</h1>
+                <PiHandWavingFill className='text-yellow-300 text-6xl' />
+                </div>
                 <div className="flex items-center mt-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <p className="ml-2 text-xs sm:text-sm text-gray-400">Disponible pour du travail en free-lance</p>
@@ -55,7 +59,7 @@ function Hero() {
               href="./get-started"
               className="inline-block px-6 py-3 text-sm sm:text-base font-medium rounded-full shadow-sm text-white bg-[#3a7dc0] hover:bg-purple-700 transition-colors"
             >
-              DEVIS GRATUIT
+             CONTACTEZ-MOI
             </a>
           </motion.div>
         </div>
