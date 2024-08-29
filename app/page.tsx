@@ -10,7 +10,7 @@ import IdeaProject from "./components/IdeaProject";
 
 export default function Home() {
   return (
-    <>
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
      <HeroSection/>
       
       
@@ -22,7 +22,7 @@ export default function Home() {
         <RecentProjects/>
       </AnimatedSection>
       
-      <AnimatedSection animation={{ initial: { opacity: 0, x: 90 }, animate: { opacity: 1, rotateX: 0 }, transition: { duration: 0.8 } }}>
+      <AnimatedSection animation={{ initial: { opacity: 0, x: 0 }, animate: { opacity: 1, rotateX: 0 }, transition: { duration: 0.8 } }}>
         <About/>
       </AnimatedSection>
       
@@ -35,6 +35,6 @@ export default function Home() {
       </AnimatedSection>
 
       <IdeaProject/>
-    </>
+    </div>
   );
 }
