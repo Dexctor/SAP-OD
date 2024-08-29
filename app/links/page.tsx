@@ -17,7 +17,7 @@ const ProfileCard = () => {
     { 
       name: 'ISAP', 
       icon: Isap, 
-      link: 'https://www.isap.com', 
+      link: 'https://www.federation-isap.fr/consultant-sap/odewas', 
       isImage: true 
     }
   ];
