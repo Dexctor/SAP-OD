@@ -20,7 +20,7 @@ export default function IdeaProject() {
         {/* Contenu CTA */}
         <div className="relative z-10 p-12">
           <motion.h2 
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4"
+            className="text-white text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.6 }}
@@ -28,7 +28,7 @@ export default function IdeaProject() {
             Vous avez un projet en tête ?
           </motion.h2>
           <motion.p 
-            className="text-sm sm:text-base mb-4 sm:mb-6"
+            className="text-white text-sm sm:text-base mb-4 sm:mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.8 }}
