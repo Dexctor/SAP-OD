@@ -56,7 +56,7 @@ export default function Contact() {
             <div className='text-center items-center flex flex-col pt-24 px-4 sm:px-6 lg:px-8'>
                 <div className='flex items-center gap-4'>
                     <div className="bg-[rgb(44,255,191)] w-1 sm:w-2 h-2 sm:h-2 rounded-full"></div>
-                    <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-9 text-center">Contact</h1>
+                    <h1 className="text-white text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-9 text-center">Contact</h1>
                 </div>
                 <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-center">
                     Contacter moi, et discutons de votre projet.
